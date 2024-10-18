@@ -16,7 +16,7 @@ import com.calendario.laboral.core.interfaces.repositorios.ITipoRepositorio;
 import com.calendario.laboral.core.interfaces.servicios.ICalendarioServicio;
 import com.calendario.laboral.dominio.Calendario;
 import com.calendario.laboral.dominio.Tipo;
-import com.calendario.laboral.dominio.DTOs.FestivoDto;
+import com.calendario.laboral.dominio.DTOs.FestivoRequestDto;
 
 @Service
 public class CalendarioServicio implements ICalendarioServicio{
@@ -46,7 +46,7 @@ public class CalendarioServicio implements ICalendarioServicio{
         // Solo guarda en base de datos si no existe aun
         if (!calendarioRepositorio.existsByFechaBetween(inicioAño, finAño)) {
          
-            List<FestivoDto> festivos = festivosCliente.obtenerFestivos(año);
+            List<FestivoRequestDto> festivos = festivosCliente.obtenerFestivos(año);
 
             Set<LocalDate> diasFestivos = festivos.stream().map(festivo -> festivo.getFecha()).collect(Collectors.toSet());
 

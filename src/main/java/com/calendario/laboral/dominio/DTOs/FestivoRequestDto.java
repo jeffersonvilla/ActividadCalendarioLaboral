@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class FestivoDto {
+public class FestivoRequestDto {
 
     private String nombre;
     private LocalDate fecha;

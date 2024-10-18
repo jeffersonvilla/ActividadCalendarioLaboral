@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.calendario.laboral.dominio.DTOs.FestivoDto;
+import com.calendario.laboral.dominio.DTOs.FestivoRequestDto;
 
 @Service
 public class FestivosCliente {
@@ -19,10 +19,10 @@ public class FestivosCliente {
         this.restTemplate = restTemplate;
     }
 
-    public List<FestivoDto> obtenerFestivos(int año){
+    public List<FestivoRequestDto> obtenerFestivos(int año){
         String url = "http://localhost:3000/festivos/obtener/"+ año;
-        ResponseEntity<List<FestivoDto>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, 
-            new ParameterizedTypeReference<List<FestivoDto>>() {
+        ResponseEntity<List<FestivoRequestDto>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, 
+            new ParameterizedTypeReference<List<FestivoRequestDto>>() {
                 
             }
         );
