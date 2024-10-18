@@ -86,4 +86,16 @@ public class CalendarioServicio implements ICalendarioServicio{
         
     }
 
+    @Override
+    public List<Calendario> obtenerCalendarioPorAño(int año) {
+        // Definir las fechas de inicio y fin del año
+        LocalDate inicioAño = LocalDate.of(año, 1, 1);
+        LocalDate finAño = LocalDate.of(año, 12, 31);
+
+        // Consultar los días del calendario para el año dado
+        List<Calendario> calendario = calendarioRepositorio.findByFechaBetween(inicioAño, finAño);
+
+        return calendario;
+    }
+
 }
