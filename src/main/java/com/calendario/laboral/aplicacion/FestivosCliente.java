@@ -20,7 +20,7 @@ public class FestivosCliente {
     }
 
     public List<FestivoRequestDto> obtenerFestivos(int año){
-        String url = "http://localhost:3000/festivos/obtener/"+ año;
+        String url = "http://172.18.0.3:3000/festivos/obtener/"+ año;
         ResponseEntity<List<FestivoRequestDto>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, 
             new ParameterizedTypeReference<List<FestivoRequestDto>>() {
                 
