@@ -1,0 +1,35 @@
+name: Build and Deploy Spring Boot Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+
+      - name: Build Docker image
+        run: docker build -t apicalendario .
+
+      - name: Stop and remove old container
+        shell: bash
+        run: |
+          docker stop dockerapicalendario
+          docker rm dockerapicalendario
+
+      - name: Run new container
+        run: docker container run --network redcalendario --name dockerapicalendario -p 3001:8080 -d apicalendario
