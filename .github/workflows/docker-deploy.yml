@@ -26,7 +26,6 @@ jobs:
         run: docker build -t apicalendario .
 
       - name: Stop and remove old container
-        shell: bash
         run: |
           docker stop dockerapicalendario
           docker rm dockerapicalendario
